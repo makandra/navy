@@ -4,6 +4,7 @@ Navy
 Navy support rendering for horizontal, multi-level navigation bars. Sections are dynamic and can depend on user permissions etc.
 
 Some of the features are:
+
 - A simple but powerful DSL to describe the navigation structure
 - Subnavigations can be previewed by clicking an expand arrow
 - Sections that don't fit into the navigation bar are automatically moved into a dropdown
@@ -38,10 +39,10 @@ Installation
 
 Put this into your Gemfile:
 
-gem 'makandra-navy', :require => 'navy'
+    gem 'makandra-navy', :require => 'navy'
 
 
-Copy stylesheets, javascripts and (perhaps) cucumber steps from `/assets` into your project.
+Copy stylesheets, javascripts and (perhaps) cucumber steps from /assets into your project.
 
 
 
