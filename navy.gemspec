@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "navy/version"
 
 Gem::Specification.new do |s|
-  s.name        = "navy"
+  s.name        = "makandra-navy"
   s.version     = Navy::VERSION
   s.authors     = ["Tobias Kraze", "Henning Koch"]
   s.email       = ["tobias@kraze.eu"]
