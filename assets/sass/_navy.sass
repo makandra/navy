@@ -1,0 +1,141 @@
+!navy_tab_navigation_height = 28px
+!navy_tab_spacing = 6px
+!navy_bubble_navigation_height = 24px
+
+!navy_color_tab_text = #fff
+!navy_color_tab_active = #fff
+!navy_color_tab_active_text = #224
+!navy_color_dropdown_text = #224
+
+!navy_color_bubble_text = #334
+!navy_color_bubble_text_hover = #428000
+!navy_color_bubble_active = #64A21D
+!navy_color_bubble_active_text = white
+
+!navy_color_tab_text_hover = darken(!navy_color_tab_text, 20%)
+!navy_color_dropdown_text_hover = !navy_color_dropdown_text + #333
+
+
+.navy-tab-navigation
+  height = $navy_tab_navigation_height + 4px
+  &.navy-hidden, .navy-hidden
+    display: none
+  .navy-layouted-sections
+    float: left
+    height: $navy_tab_navigation_height + 4px
+    overflow: hidden
+  a
+    float: left
+    padding: 0 10px
+    height: $navy_tab_navigation_height
+    line-height: $navy_tab_navigation_height
+    font-weight: bold
+    text-decoration: none
+    color: !navy_color_tab_text
+    background-color: rgba(0, 0, 0, 0.35)
+    .navy-section-expander
+      display: block
+      float: right
+      height: $navy_tab_navigation_height
+      padding: 0 10px
+      margin-right: -10px
+      &:hover
+        color: !navy_color_tab_text_hover 
+    &.navy-current
+      .navy-section-expander
+        display: none
+  &.navy-expanded
+    padding-bottom: 4px
+  .navy-layouted-sections a
+    margin-right: $navy_tab_spacing
+  .navy-layouted-sections a, .navy-dropdown-expander
+    &.navy-active
+      color: $navy_color_tab_active_text
+      background-color: $navy_color_tab_active
+      .navy-section-expander:hover
+        color: $navy_color_tab_active_text
+    margin-top: 4px
+    &:last-child
+      padding-right: 10px
+    &:hover
+      margin-top: 0
+      padding-bottom: 4px
+  .navy-dropdown-expander
+    position: relative
+    z-index: 100
+  .navy-navigation-dropdown
+    visibility: hidden
+    float: left
+    position: relative
+    .navy-dropdown-sections
+      border: 1px solid rgba(0, 0, 0, 0.35)
+      border-top: none
+      padding: 6px
+      position: absolute
+      top: $navy_tab_navigation_height + 4px
+      right: 0
+      z-index: 99
+      background: white
+      .navy-section-expander
+        display: none
+      .navy-section
+        line-height: 24px
+        height: 24px
+        background: white
+        color: $navy_color_dropdown_text
+        margin-top: 0
+        float: none
+        display: block
+        &:hover
+          color: $navy_color_dropdown_text_hover
+  .navy-end
+    clear: both
+    height: 0
+    display: block
+
+
+.navy-bubble-navigation
+  &.navy-hidden, .navy-hidden
+    display: none
+  a
+    height: $navy_bubble_navigation_height
+    line-height: $navy_bubble_navigation_height
+    color: $navy_color_bubble_text
+    float: left
+    margin-right: 10px
+    &:hover
+      color = $navy_color_bubble_text_hover
+    &.navy-current
+      padding: 0 7px
+      background-color: $navy_color_bubble_active
+      color: $navy_color_bubble_active_text
+  .navy-inner-navigation-bar
+    padding: 6px 0 5px 0
+  .navy-end
+    display: block
+    clear: both
+    height: 0
+
+
+.navy-tab-navigation-extra
+  a
+    +gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5))
+    +round_top_corners(2px)
+  &.navy-expanded
+    a
+      +round_corners(5px)
+  .navy-layouted-sections a, .navy-dropdown-expander
+    &.navy-active
+      +gradient($navy_color_tab_active, $navy_color_tab_active)
+      +box_shadow(0 0 10px $navy_color_tab_active)
+  .navy-navigation-dropdown
+    .navy-dropdown-sections
+      border: none
+      +box_shadow(0 0 8px rgba(0, 0, 0, 0.3))
+
+
+.navy-bubble-navigation-extra
+  a
+    &.navy-current
+      +gradient(lighten($navy_color_bubble_active, 5%), darken($navy_color_bubble_active, 5%))
+      +round_corners(5px)
