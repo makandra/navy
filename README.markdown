@@ -59,7 +59,7 @@ Navigation structure is defined with a class like this (somewhere in your load p
         section :dashboard, "Dashboard", root_path
 
         if current_user.admin?
-          section :admin do
+          section :admin, 'Admin' do
             section :admin_users, "Users", admin_users_path
 
             if current_user.may_admin_projects?
@@ -74,6 +74,10 @@ Navigation structure is defined with a class like this (somewhere in your load p
         section :imprint, "Imprint", imprint_path
       end
 
+      navigation :user do |user|
+        section :settings, "Settings", user_settings_path(user)
+      end
+
     end
 
 
@@ -85,9 +89,25 @@ To actually render a navigation, do this in your view:
 
     <%= render_navigation Navigation.footer %>
 
+    <%= render_navigation Navigation.user(current_user) %>
 
 The `:collapse => true` option enables the automatic moving of navigation sections into a dropdown if they do not fit.
 
+
+Cucumber
+-------
+
+There are some cucumber steps in /assets.
+
+The most important one is:
+  
+
+    When I open the "Admin" section
+
+
+To open submenu entries, use
+ 
+   When I open the "Admin > Projects" section
 
 
 Credits
