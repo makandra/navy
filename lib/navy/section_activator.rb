@@ -4,7 +4,7 @@ module Navy
     def self.included(base)
       base.send :extend, ClassMethods
       base.send :include, InstanceMethods
-      base.helper_method :section_active?
+      base.helper_method :section_active? if base.respond_to?(:helper_method)
     end
 
     module ClassMethods

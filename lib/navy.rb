@@ -9,4 +9,5 @@ require 'navy/section_parser'
 require 'navy/renderer_helper'
 
 ActionView::Base.send :include, Navy::RendererHelper
+ActionView::Base.send :include, Navy::SectionActivator
 ActionController::Base.send :include, Navy::SectionActivator

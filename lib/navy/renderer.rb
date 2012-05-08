@@ -9,6 +9,7 @@ module Navy
       @html_to_append = []
       @id_counter = 0
       @collapse = options[:collapse]
+      @name = options[:name]
     end
 
     def next_id
@@ -17,7 +18,8 @@ module Navy
 
 
     def render_navigation(navigation)
-      div_tag(:id => "navy-#{navigation.name}-navigation", :class => 'navy-navigation') do
+      name = @name || navigation.name
+      div_tag(:id => "navy-#{name}-navigation", :class => 'navy-navigation') do
         html = ''.html_safe
         html << render_section_container(navigation, 1)
         @html_to_append.each do |append|
@@ -85,7 +87,7 @@ module Navy
         end
       end
       label << section.label
-      link_to(label, section.url, :class => link_classes.join(' '), :"data-navy-opens" => id)
+      link_to(label, section.url, :class => link_classes.join(' '), :"data-navy-opens" => id, 'data-navy-section' => section.name)
     end
 
     
