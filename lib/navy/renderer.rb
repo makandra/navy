@@ -87,6 +87,7 @@ module Navy
         end
       end
       label << section.label
+      label = content_tag(:span, label, :class => 'navy-section-inner')
       link_to(label, section.url, :class => link_classes.join(' '), :"data-navy-opens" => id, 'data-navy-section' => section.name)
     end
 
