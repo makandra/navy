@@ -76,7 +76,8 @@ module Navy
 
     def render_section(section, level, parent_id)
       id = next_id
-      link_classes = ['navy-section']
+      link_to_options = section.link_to_options.dup
+      link_classes = ['navy-section', link_to_options.delete(:class)].compact
       link_classes << 'navy-current navy-active' if section.active?
       label = ''.html_safe
       if section.children?
@@ -88,7 +89,7 @@ module Navy
       end
       label << section.label
       label = content_tag(:span, label, :class => 'navy-section-inner')
-      link_to(label, section.url, :class => link_classes.join(' '), :"data-navy-opens" => id, 'data-navy-section' => section.name)
+      link_to(label, section.url, link_to_options.merge(:class => link_classes.join(' '), :"data-navy-opens" => id, 'data-navy-section' => section.name))
     end
 
     
