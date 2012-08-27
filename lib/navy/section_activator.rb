@@ -11,9 +11,15 @@ module Navy
     module ClassMethods
 
       def default_active_sections
-        @default_active_sections
+        @default_active_sections_with_ancestors ||= begin
+          sections = @default_active_sections || []
+          if superclass.respond_to?(:default_active_sections)
+            sections += superclass.default_active_sections
+          end
+          sections
+        end
       end
-
+      
       private
 
       def in_sections(*sections)
