@@ -22,7 +22,7 @@ module Navy
     end
 
     def respond_to?(method, include_private = false)
-      super || context.respond_to?(method, false) # don't forward private messages
+      super || @context.respond_to?(method, false) # don't forward private messages
     end
 
     def method_missing(method, *args, &block)
