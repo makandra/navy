@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 When /^I open the "([^"]*)" (?:section|tab)$/ do |all_labels|
   labels = all_labels.split('>').collect(&:squish)
   if Capybara.current_session.driver.is_a? Capybara::Driver::Selenium

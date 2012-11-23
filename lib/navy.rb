@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'navy/section_container'
 require 'navy/description'
 require 'navy/navigation'
