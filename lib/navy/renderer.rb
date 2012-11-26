@@ -27,7 +27,7 @@ module Navy
         html << append
       end
       klasses = []
-      klassey << 'navy-navigation'
+      klasses << 'navy-navigation'
       klasses << 'navy-empty' if html.strip.blank?
       content_tag(:div, html, :id => "navy-#{name}-navigation", :class => klasses.join(' '))
     end
