@@ -21,16 +21,16 @@ module Navy
 
     def render_navigation(navigation)
       name = @name || navigation.name
-      div_tag(:id => "navy-#{name}-navigation", :class => 'navy-navigation') do
-        html = ''.html_safe
-        html << render_section_container(navigation, 1)
-        @html_to_append.each do |append|
-          html << append
-        end
-        html
+      html = ''.html_safe
+      html << render_section_container(navigation, 1)
+      @html_to_append.each do |append|
+        html << append
       end
+      klasses = []
+      klassey << 'navy-navigation'
+      klasses << 'navy-empty' if html.strip.blank?
+      content_tag(:div, html, :id => "navy-#{name}-navigation", :class => klasses.join(' '))
     end
-
 
     private
 
