@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = ""
   s.summary     = %q{Comprehensive solution for multi-level horizontal navigation bars.}
   s.description = s.summary
+  s.license     = 'MIT'
 
   s.rubyforge_project = "navy"
 
