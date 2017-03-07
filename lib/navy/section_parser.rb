@@ -17,9 +17,6 @@ module Navy
 
     def section(name, label, url = nil, link_to_options = {}, &children)
       section = Navy::Section.new(name, label, url, link_to_options, @context.section_active?(name), &children)
-      if url.nil?
-        section.url = section.sections(@context).first.url
-      end
       sections << section
     end
 
