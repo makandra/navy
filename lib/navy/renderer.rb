@@ -22,7 +22,7 @@ module Navy
     def render_navigation(navigation)
       name = @name || navigation.name
       html = ''.html_safe
-      html << render_section_container(navigation, 1)
+      html << render_section_container(navigation, navigation.sections(@context), 1)
       @html_to_append.each do |append|
         html << append
       end
@@ -38,16 +38,7 @@ module Navy
       @html_to_append << html
     end
 
-    def render_section_containers
-      html = ''.html_safe
-      while @section_containers_to_render.any?
-        html << render_section_container(*@section_containers_to_render.shift)
-      end
-      html
-    end
-
-    def render_section_container(section_container, level, parent_id = nil, parent_url = nil)
-      sections = section_container.sections(@context)
+    def render_section_container(section_container, sections, level, parent_id = nil, parent_url = nil)
       section_classes = ["navy-level-#{level}", "navy-navigation-bar"]
       section_classes << (section_container.active? ? 'navy-current' : 'navy-hidden')
       unless sections.size == 0 or (sections.size == 1 and sections.first.url == parent_url)
@@ -82,8 +73,15 @@ module Navy
       link_classes = ['navy-section', link_to_options.delete(:class)].compact
       link_classes << 'navy-current navy-active' if section.active?
       label = ''.html_safe
+      url = section.url
       if section.children?
-        children_html = render_section_container(section, level + 1, id, section.url)
+        children_sections = section.sections(@context)
+        if (first_child = children_sections.first)
+          url ||= first_child.url
+        else
+          url ||= '#'
+        end
+        children_html = render_section_container(section, children_sections, level + 1, id, url)
         if children_html.present?
           append(children_html)
           label << ' <span class="navy-section-expander">▾</span>'.html_safe
@@ -91,7 +89,7 @@ module Navy
       end
       label << section.label
       label = content_tag(:span, label, :class => 'navy-section-inner')
-      link_to(label, section.url, link_to_options.merge(:class => link_classes.join(' '), :"data-navy-opens" => id, 'data-navy-section' => section.name))
+      link_to(label, url, link_to_options.merge(:class => link_classes.join(' '), :"data-navy-opens" => id, 'data-navy-section' => section.name))
     end
 
     
