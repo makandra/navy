@@ -94,7 +94,12 @@ module Navy
 
     
     def div_tag(options, &block)
-      content_tag_string(:div, block.call, options, true)
+      if ActionPack::VERSION::MAJOR.to_s < '5'
+        content_tag_string(:div, block.call, options, true)
+      else
+        # Rails 5 moved this method to the tag_builder and will raise a NameError
+        tag_builder.content_tag_string(:div, block.call, options, true)
+      end
     end
 
   end
